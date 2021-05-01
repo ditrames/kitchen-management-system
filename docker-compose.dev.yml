@@ -1,0 +1,46 @@
+version: '3'
+      
+services:
+  server: 
+    environment:
+      FLASK_DEBUG: 'True'
+    volumes: 
+      - ./application/server:/app
+  dbmanage:
+    image: dpage/pgadmin4
+    user: 5050:5050
+    ports:
+      - 80:80
+      - 443:443
+
+    depends_on:
+      - database
+
+    links:
+      - 'database:backenddb'
+
+    volumes:
+      - './application/database/pgadmin_data:/var/lib/pgadmin'
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+
+  dbmigration:
+    build: 
+      context: ./application/database/migration_dat
+      args: 
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    volumes: 
+      - ./application/database/migration_dat:/migration
+      - ./application/server:/migration/migrations/dbmodledata
+    depends_on:
+      - database
+    links:
+      - 'database:backenddb'
+    environment:
+      PGUNAME: postgres
+      PGPASSWD: ${POSTGRES_PASSWORD}
+    tty: true
+    stdin_open: true

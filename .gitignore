@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 #docker stuff
-database/
+database/dbdata
+database/pgadmin_data

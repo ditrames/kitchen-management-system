@@ -27,3 +27,21 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
+  barcode:
+    build: ./application/barcode
+
+    devices:
+      - /dev/video0:/dev/video1
+      - /dev/snd:/dev/snd
+      - /dev/tty0:/dev/tty0
+    volumes:
+      - /run/user:/run/user
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./application/barcode:/barcode-py
+
+    environment: 
+      DISPLAY: ${DISPLAY}
+      XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR}
+
+    tty: true
+    stdin_open: true

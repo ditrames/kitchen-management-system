@@ -32,8 +32,8 @@ services:
     build: 
       context: ./application/database/migration_dat
       args: 
-        USER_ID: ${USER_ID}
-        GROUP_ID: ${GROUP_ID}
+        USER_ID: ${UID}
+        GROUP_ID: ${GID}
     volumes: 
       - ./application/database/migration_dat:/migration
       - ./application/server:/migration/migrations/dbmodledata

@@ -36,7 +36,6 @@ services:
         GROUP_ID: ${GID}
     volumes: 
       - ./application/database/migration_dat:/migration
-      - ./application/server:/migration/migrations/dbmodledata
     depends_on:
       - database
     links:

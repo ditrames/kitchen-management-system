@@ -26,6 +26,9 @@ stop:
 	@docker-compose -f docker-compose.yml down
 
 build-debug:
+	@if [ -z "$(POSTGRES_PASSWORD)" ]; then echo "environment veriable POSTGRES_PASSWORD, not set"; exit 1  teg; fi
+	@if [ -z "$(PGADMIN_EMAIL)" ]; then echo "environment veriable PGADMIN_EMAIL, not set"; exit 1  teg; fi
+	@if [ -z "$(PGADMIN_PASSWORD)" ]; then echo "environment veriable PGADMIN_PASSWORD, not set"; exit 1  teg; fi
 	@docker-compose -f docker-compose.yml -f docker-compose.dev.yml  build
 
 run-debug:

@@ -131,3 +131,4 @@ dmypy.json
 #docker stuff
 database/dbdata
 database/pgadmin_data
+.vscode/settings.json

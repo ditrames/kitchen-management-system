@@ -19,6 +19,9 @@ build:
 run:
 	@docker-compose -f docker-compose.yml up -d
 
+run-live:
+	@docker-compose -f docker-compose.yml up
+
 stop:
 	@docker-compose -f docker-compose.yml down
 
@@ -27,6 +30,10 @@ build-debug:
 
 run-debug:
 	@docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+run-debug-live:
+	@docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
 
 stop-debug:
 	@docker-compose -f docker-compose.yml -f docker-compose.dev.yml stop

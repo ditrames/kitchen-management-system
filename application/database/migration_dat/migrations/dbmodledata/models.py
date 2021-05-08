@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String, Foreignkey, Boolean
 
 Base = declarative_base()
 
+
 class Items(Model):
     __tablename__ = 'items'
     id = Column(Integer, primary_key=True)

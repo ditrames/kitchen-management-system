@@ -1,10 +1,10 @@
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Foreignkey, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 
 Base = declarative_base()
 
 
-class Items(Model):
+class Items(Base):
     __tablename__ = 'items'
     id = Column(Integer, primary_key=True)
     barcode_id = Column(String, nullable=False)
@@ -19,7 +19,7 @@ class Items(Model):
             self.name, self.fullname, self.nickname)
 
 
-class StockTracker(Model):
+class StockTracker(Base):
     __tablename__ = 'stock_tracker'
     id = Column(Integer, primary_key=True)
     amount = Column(Integer, nullable=False)

@@ -1,28 +1,27 @@
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 
-class Items(db.Model):
+Base = declarative_base()
+
+
+class Items(Base):
     __tablename__ = 'items'
-    id = db.Column(db.Integer, primary_key=True)
-    barcode_id = db.Column(db.String, nullable=False)
-    item_name = db.Column(db.String, nullable=True)
-    position = db.Column(db.String, nullable=True)
-    buy_link = db.Column(db.String, nullable=True)  # link to buy the item at
-    compleated = db.Column(db.Boolean)
-    nickname = db.Column(db.String)
+    id = Column(Integer, primary_key=True)
+    barcode_id = Column(String, nullable=False)
+    item_name = Column(String, nullable=True)
+    position = Column(String, nullable=True)
+    buy_link = Column(String, nullable=True)  # link to buy the item at
+    compleated = Column(Boolean)
+    nickname = Column(String)
 
     def __repr__(self):
         return "<User(name='%s', fullname='%s', nickname='%s')>" % (
             self.name, self.fullname, self.nickname)
 
 
-class CurrentStock(db.Model):
-    __tablename__ = 'current_stock'
-    id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Integer, nullable=False)
-    item_type = db.Column(db.Integer, db.ForeignKey('items.id'))
-
-
-class TargetStock(db.Model):
-    __tablename__ = 'target_stock'
-    id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Integer, nullable=False)
-    item_type = db.Column(db.Integer, db.ForeignKey('items.id'))
+class StockTracker(Base):
+    __tablename__ = 'stock_tracker'
+    id = Column(Integer, primary_key=True)
+    amount = Column(Integer, nullable=False)
+    item_type = Column(Integer, ForeignKey('items.id'))
+    target_stock = Column(Integer, nullable=False)

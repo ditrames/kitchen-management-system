@@ -30,7 +30,7 @@ target_metadata = Base.metadata
 
 
 def get_url():
-    DB_UNAME = os.environ.get('PGUNAME')
+    DB_UNAME = os.environ.get('PGUNAME', 'postgres')
     DB_PWD = os.environ.get('PGPASSWD')
     return f'postgresql://{DB_UNAME}:{DB_PWD}@backenddb/appdata'
 

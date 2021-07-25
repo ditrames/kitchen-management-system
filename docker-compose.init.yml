@@ -1,0 +1,24 @@
+version: '3'
+      
+services:
+  dbmigration:
+    command: bash -c "/wait && alembic upgrade head"
+    build: 
+      context: ./application/database/migration_dat
+      args: 
+        USER_ID: ${UID}
+        GROUP_ID: ${GID}
+    volumes: 
+      - ./application/database/migration_dat:/migration
+    depends_on:
+      - database
+    links:
+      - 'database:backenddb'
+    environment:
+      PGUNAME: postgres
+      PGPASSWD: ${POSTGRES_PASSWORD}
+      WAIT_HOSTS: backenddb:5432
+    
+    tty: true
+    stdin_open: true
+    

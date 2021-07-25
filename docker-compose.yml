@@ -16,17 +16,6 @@ services:
       POSTGRES_UNAME: postgres
       FLASK_DEBUG: 'False'
 
-  database:
-    image: postgres:latest
-    
-    volumes:
-      - "./application/database/dbdata:/var/lib/postgresql/data"
-
-    restart: always
-
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
   barcode:
     build: ./application/barcode
 

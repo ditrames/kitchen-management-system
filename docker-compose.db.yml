@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  database:
+    build: ./application/database/postgres/
+    
+    volumes:
+      - "./application/database/dbdata:/var/lib/postgresql/data"
+
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}

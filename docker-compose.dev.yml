@@ -42,6 +42,7 @@ services:
     environment:
       PGUNAME: postgres
       PGPASSWD: ${POSTGRES_PASSWORD}
+      WAIT_HOSTS: postgres:5432
     
     tty: true
     stdin_open: true

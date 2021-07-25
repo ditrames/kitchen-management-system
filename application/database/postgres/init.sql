@@ -1,0 +1,3 @@
+CREATE DATABASE appdata;
+GRANT ALL PRIVILEGES ON DATABASE appdata TO postgres;
+
